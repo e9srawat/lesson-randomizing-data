@@ -33,7 +33,7 @@ def create_rentals(assets, q):
         a_id = asset["id"]
         s_date = asset["purchase_date"]
         if a_id in dates:
-            s_date = dates[a_id]
+            s_date = dates[a_id] + timedelta(days=1)
         if s_date > today:
             continue
         e_date = s_date + timedelta(days=random.randint(1,30))
@@ -43,3 +43,8 @@ def create_rentals(assets, q):
         dates[a_id] = e_date
         id_count += 1
     return rentals
+
+a = create_assets(5,345)
+for i in a: print(i)
+b = create_rentals(a,10)
+for i in b: print(i)
