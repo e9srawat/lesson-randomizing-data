@@ -36,7 +36,9 @@ def create_rentals(assets, q):
     """
     rentals = []
     dates = {}
-    for i in range(1, q + 1):
+    id_count = 1
+    while len(rentals) < q:
+        today = datetime.today()
         asset = random.choice(assets)
         a_id = asset["id"]
         s_date = asset["purchase_date"]
@@ -47,9 +49,12 @@ def create_rentals(assets, q):
         if s_date.month < 12:
             e_date = datetime(s_date.year, s_date.month + 1, s_date.day).date()
         else:
-            e_date = datetime(s_date.year+1, 1, s_date.day).date()
+            e_date = datetime(s_date.year + 1, 1, s_date.day).date()
+        if s_date > today.date():
+            continue
         rentals.append(
-            {"id": i, "asset_id": a_id, "start_date": s_date, "end_date": e_date}
+            {"id": id_count, "asset_id": a_id, "start_date": s_date, "end_date": e_date}
         )
         dates[a_id] = e_date
+        id_count += 1
     return rentals
