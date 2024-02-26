@@ -43,8 +43,3 @@ def create_rentals(assets, q):
         dates[a_id] = e_date
         id_count += 1
     return rentals
-
-a = create_assets(5,345)
-for i in a: print(i)
-b = create_rentals(a,10)
-for i in b: print(i)
