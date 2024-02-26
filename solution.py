@@ -36,7 +36,7 @@ def create_rentals(assets, q):
             s_date = dates[a_id]
         if s_date > today:
             continue
-        e_date = s_date + timedelta(days=30)
+        e_date = s_date + timedelta(days=random.randint(1,30))
         rentals.append(
             {"id": id_count, "asset_id": a_id, "start_date": s_date, "end_date": e_date}
         )
